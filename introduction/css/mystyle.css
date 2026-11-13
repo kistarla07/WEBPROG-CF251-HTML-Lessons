@@ -1,101 +1,95 @@
 body {
-    background-color: rgb(211, 180, 132)
+  background-color: rgb(211, 180, 132);
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
 }
 
-h1 {
-    color:antiquewhite;
-    margin-left: 20px;
+/* Grid container */
+.container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-areas:
+    "header     header     header"
+    "about      about      about"
+    "facts      facts      facts"
+    "course     experience hobbies"
+    "goals      goals      goals"
+    "gallery    gallery    gallery";
+  gap: 15px;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 15px;
+  background-color: dodgerblue;
 }
 
-/* Links */ 
-a:link {
-  color: darkblue;
+/* Bigger gallery */
+.gallery {
+  text-align: center;
 }
-a:visited {
-  color: purple;
-}
-a:hover {
-  color: red;
-  text-decoration: underline;
-}
-a:active {
-  color: orange;
+.gallery img {
+  width: 100%;
+  max-width: 700px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
 }
 
-/* Images */
-img {
-  border: 3px solid antiquewhite;
+/* Cards */
+.container > header,
+.container > section {
+  background-color: #f1f1f1;
+  color: #000;
+  padding: 15px 20px;
   border-radius: 8px;
 }
 
-/*  Tables */
-table {
-  border-collapse: collapse;
-  width: 100%;
-}
-th, td {
-  border: 1px solid black;
-  padding: 8px;
-  text-align: left;
-}
-th {
-  background-color: antiquewhite;
-}
+.header        { grid-area: header; text-align: center; }
+.about         { grid-area: about; }
+.quick-facts   { grid-area: facts; }
+.course        { grid-area: course; }
+.experience    { grid-area: experience; }
+.hobbies       { grid-area: hobbies; }
+.goals         { grid-area: goals; }
+.gallery       { grid-area: gallery; }
+
+/* Text */
+h1 { color: #222; margin: 0 0 8px; }
+h2 { color: #1a5fb4; font-size: 1.1rem; margin-top: 0; }
+
+/* Links */
+a:link    { color: darkblue; }
+a:visited { color: purple; }
+a:hover   { color: red; text-decoration: underline; }
+a:active  { color: orange; }
+.pages a  { margin: 0 10px; }
+
+span { color: darkred; }
+.highlight { background-color: yellow; display: inline-block; }
+
+/* Table */
+table { border-collapse: collapse; width: 100%; }
+th, td { border: 1px solid black; padding: 6px; text-align: left; }
+th { background-color: antiquewhite; }
 
 /* Lists */
-ul {
-  list-style-type: square;
-}
-ol {
-  list-style-type: decimal;
-}
-li {
-  margin-bottom: 5px;
-}
- 
-p {
-  display: block;
-}
-span {
-  display: inline;
-  color: darkred;
+ul { list-style-type: square; padding-left: 20px; }
+ol { list-style-type: decimal; padding-left: 20px; }
+li { margin-bottom: 5px; }
+
+/* Image */
+img {
+  width: 100%;
+  height: auto;
+  border: 3px solid antiquewhite;
+  border-radius: 8px;
+  box-sizing: border-box;
 }
 
-/* Block and Inline */
-div {
-  background-color: antiquewhite;
-  padding: 10px;
-  margin: 10px 20px;
-}
-
-/* Class Attribute */
-.highlight {
-  background-color: yellow;
-}
-.center {
-  text-align: center;
-}
-
-/* id Attribute */
-#about {
-  color: saddlebrown;
-}
-#gallery {
-  text-align: center;
-}
-
-.container {
-  display: grid;
-  grid-template-columns: auto auto auto;
-  grid-template-rows: 80px 200px;  
-  background-color: dodgerblue;
-  padding: 5px;
-  gap: 5px;  
-}
-.container div {
-  background-color: #f1f1f1;
-  color:#000;
-  padding: 10px;
-  font-size: 30px;
-  text-align: center;
+@media (max-width: 700px) {
+  .container {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "header" "about" "facts" "course"
+      "experience" "hobbies" "goals" "gallery";
+  }
 }
