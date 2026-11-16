@@ -22,18 +22,6 @@ body {
   background-color: dodgerblue;
 }
 
-/* Bigger gallery */
-.gallery {
-  text-align: center;
-}
-.gallery img {
-  width: 100%;
-  max-width: 700px;
-  height: auto;
-  display: block;
-  margin: 0 auto;
-}
-
 /* Cards */
 .container > header,
 .container > section {
@@ -52,6 +40,18 @@ body {
 .goals         { grid-area: goals; }
 .gallery       { grid-area: gallery; }
 
+/* Bigger gallery */
+.gallery {
+  text-align: center;
+}
+.gallery img {
+  width: 100%;
+  max-width: 700px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
 /* Text */
 h1 { color: #222; margin: 0 0 8px; }
 h2 { color: #1a5fb4; font-size: 1.1rem; margin-top: 0; }
@@ -66,10 +66,68 @@ a:active  { color: orange; }
 span { color: darkred; }
 .highlight { background-color: yellow; display: inline-block; }
 
-/* Table */
-table { border-collapse: collapse; width: 100%; }
-th, td { border: 1px solid black; padding: 6px; text-align: left; }
-th { background-color: antiquewhite; }
+/* Quick Facts Table: combining css-grid and css-flexbox */
+
+/* flexbox stacks heading and table in a column */
+.quick-facts {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* grid creates grid containers */
+.quick-facts table,
+.quick-facts tbody {
+  display: grid;
+  width: 100%;
+}
+
+.quick-facts tbody {
+  gap: 0;
+  border: 1px solid black;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+/* grid creates a 2-column grid for each row (label | details) */
+.quick-facts tr {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  border-bottom: 1px solid black;
+}
+.quick-facts tr:last-child {
+  border-bottom: none;
+}
+
+/* flexbox makes each cell use flex to align its content vertically */
+.quick-facts th,
+.quick-facts td {
+  display: flex;
+  align-items: center;
+  padding: 8px 12px;
+  text-align: left;
+  border: none;
+}
+
+.quick-facts th {
+  background-color: antiquewhite;
+  font-weight: bold;
+}
+
+/* Label column gets a divider */
+.quick-facts td:first-child {
+  border-right: 1px solid black;
+  background-color: #fbf3e6;
+  font-weight: bold;
+}
+.quick-facts th:first-child {
+  border-right: 1px solid black;
+}
+
+/* Row hover */
+.quick-facts tr:not(:first-child):hover td {
+  background-color: #ffe9b8;
+}
 
 /* Lists */
 ul { list-style-type: square; padding-left: 20px; }
@@ -85,11 +143,20 @@ img {
   box-sizing: border-box;
 }
 
+/* Small screens */
 @media (max-width: 700px) {
   .container {
     grid-template-columns: 1fr;
     grid-template-areas:
       "header" "about" "facts" "course"
       "experience" "hobbies" "goals" "gallery";
+  }
+
+  .quick-facts tr {
+    grid-template-columns: 1fr;
+  }
+  .quick-facts td:first-child,
+  .quick-facts th:first-child {
+    border-right: none;
   }
 }
